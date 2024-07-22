@@ -1,0 +1,15 @@
+<html>
+<head>
+  <title>如何在TikTok搜索关键词</title>
+</head>
+<body>
+  <h1>在TikTok搜索关键词："example keyword"</h1>
+  <p>请按照以下步骤操作：</p>
+  <ol>
+    <li>打开TikTok应用。</li>
+    <li>点击底部的放大镜图标进入搜索页面。</li>
+    <li>在搜索框中输入关键词："example keyword"。</li>
+    <li>点击搜索按钮查看结果。</li>
+  </ol>
+</body>
+</html>
