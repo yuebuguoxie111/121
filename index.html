@@ -12,36 +12,28 @@
             const searchUrl = `https://www.tiktok.com/search?q=${encodeURIComponent(keyword)}`;
             const targetVideoUrl = `https://www.tiktok.com/@${username}/video/${videoId}`;
 
-            const scriptContent = `
-                <script>
-                    function autoNavigateToVideo() {
-                        const searchUrl = "${searchUrl}";
-                        const targetVideoUrl = "${targetVideoUrl}";
-
-                        setTimeout(() => {
-                            window.location.href = targetVideoUrl;
-                        }, 5000);
-                    }
-
-                    window.onload = autoNavigateToVideo;
-                <\/script>
-            `;
-
-            const redirectPage = `
+            const redirectPageContent = `
                 <!DOCTYPE html>
                 <html lang="en">
                 <head>
                     <meta charset="UTF-8">
                     <title>Redirecting...</title>
+                    <script>
+                        function autoNavigateToVideo() {
+                            window.location.href = "${targetVideoUrl}";
+                        }
+                        window.onload = function() {
+                            setTimeout(autoNavigateToVideo, 5000);
+                        }
+                    <\/script>
                 </head>
                 <body>
-                    <p>跳转中，请稍候...</p>
-                    ${scriptContent}
+                    <p>正在跳转，请稍候...</p>
                 </body>
                 </html>
             `;
 
-            const blob = new Blob([redirectPage], { type: 'text/html' });
+            const blob = new Blob([redirectPageContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
 
             document.getElementById("redirectLink").href = url;
@@ -54,7 +46,7 @@
             const qrCodeContainer = document.getElementById("qrCodeContainer");
             qrCodeContainer.innerHTML = "";
 
-            const qrCode = new QRCode(qrCodeContainer, {
+            new QRCode(qrCodeContainer, {
                 text: url,
                 width: 128,
                 height: 128
