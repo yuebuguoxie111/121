@@ -36,16 +36,9 @@
             const blob = new Blob([redirectPageContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
 
-            document.getElementById("redirectLink").href = url;
-            document.getElementById("redirectLink").style.display = 'block';
-            document.getElementById("redirectLink").textContent = '点击这里复制链接';
-        }
-
-        function copyToClipboard() {
-            const link = document.getElementById("redirectLink").href;
-            navigator.clipboard.writeText(link).then(() => {
-                alert('链接已复制到剪贴板');
-            });
+            document.getElementById("generatedLink").innerText = url;
+            document.getElementById("generatedLink").href = url;
+            document.getElementById("generatedLinkContainer").style.display = 'block';
         }
     </script>
 </head>
@@ -61,6 +54,9 @@
         <button type="submit">生成跳转链接</button>
     </form>
     <br>
-    <a id="redirectLink" href="#" style="display:none;" onclick="copyToClipboard()">点击这里复制链接</a>
+    <div id="generatedLinkContainer" style="display:none;">
+        <p>点击下面的链接复制跳转地址:</p>
+        <a id="generatedLink" href="#" target="_blank"></a>
+    </div>
 </body>
 </html>
