@@ -40,6 +40,13 @@
             document.getElementById("redirectLink").style.display = 'block';
             document.getElementById("redirectLink").textContent = '点击这里复制链接';
         }
+
+        function copyToClipboard() {
+            const link = document.getElementById("redirectLink").href;
+            navigator.clipboard.writeText(link).then(() => {
+                alert('链接已复制到剪贴板');
+            });
+        }
     </script>
 </head>
 <body>
@@ -55,14 +62,5 @@
     </form>
     <br>
     <a id="redirectLink" href="#" style="display:none;" onclick="copyToClipboard()">点击这里复制链接</a>
-
-    <script>
-        function copyToClipboard() {
-            const link = document.getElementById("redirectLink").href;
-            navigator.clipboard.writeText(link).then(() => {
-                alert('链接已复制到剪贴板');
-            });
-        }
-    </script>
 </body>
 </html>
