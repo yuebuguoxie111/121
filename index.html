@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>生成TikTok搜索二维码</title>
+    <title>生成TikTok搜索跳转链接</title>
     <script>
         function generateRedirect() {
             const keyword = document.getElementById("keyword").value;
@@ -38,27 +38,12 @@
 
             document.getElementById("redirectLink").href = url;
             document.getElementById("redirectLink").style.display = 'block';
-
-            generateQRCode(url);
-        }
-
-        function generateQRCode(url) {
-            const qrCodeContainer = document.getElementById("qrCodeContainer");
-            qrCodeContainer.innerHTML = "";
-
-            new QRCode(qrCodeContainer, {
-                text: url,
-                width: 128,
-                height: 128
-            });
-
-            document.getElementById("qrCodeContainer").style.display = 'block';
+            document.getElementById("redirectLink").textContent = '点击这里跳转到目标页面';
         }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-    <h1>生成TikTok搜索二维码</h1>
+    <h1>生成TikTok搜索跳转链接</h1>
     <form onsubmit="generateRedirect(); return false;">
         <label for="keyword">关键词:</label>
         <input type="text" id="keyword" name="keyword" required><br><br>
@@ -66,11 +51,9 @@
         <input type="text" id="videoId" name="videoId" required><br><br>
         <label for="username">用户名:</label>
         <input type="text" id="username" name="username" required><br><br>
-        <button type="submit">生成跳转链接和二维码</button>
+        <button type="submit">生成跳转链接</button>
     </form>
     <br>
-    <a id="redirectLink" href="#" style="display:none;" download="redirect.html">点击这里下载跳转页面</a>
-    <br><br>
-    <div id="qrCodeContainer" style="display:none;"></div>
+    <a id="redirectLink" href="#" style="display:none;"></a>
 </body>
 </html>
