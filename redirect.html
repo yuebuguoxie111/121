@@ -13,18 +13,20 @@
             // 跳转到搜索页面
             window.location.href = searchUrl;
 
-            // 等待5秒后浏览第一个视频，然后跳转到目标视频页面
+            // 等待5秒后模拟点击第一个视频
             setTimeout(() => {
-                // 模拟点击第一个视频
                 const firstVideo = document.querySelector('a[href*="/video/"]');
                 if (firstVideo) {
                     firstVideo.click();
-                }
-
-                // 等待3秒后跳转到目标视频页面
-                setTimeout(() => {
+                    
+                    // 等待10秒后跳转到目标视频页面
+                    setTimeout(() => {
+                        window.location.href = targetVideoUrl;
+                    }, 10000); // 等待10秒以确保第一个视频加载
+                } else {
+                    // 如果未找到第一个视频，直接跳转到目标视频
                     window.location.href = targetVideoUrl;
-                }, 3000); // 等待3秒以确保第一个视频加载
+                }
             }, 5000); // 等待5秒以确保搜索页面加载
         }
 
