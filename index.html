@@ -2,61 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>生成TikTok搜索跳转链接</title>
-    <script>
-        function generateRedirect() {
-            const keyword = document.getElementById("keyword").value;
-            const videoId = document.getElementById("videoId").value;
-            const username = document.getElementById("username").value;
-
-            const searchUrl = `https://www.tiktok.com/search?q=${encodeURIComponent(keyword)}`;
-            const targetVideoUrl = `https://www.tiktok.com/@${username}/video/${videoId}`;
-
-            const redirectPageContent = `
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Redirecting...</title>
-                    <script>
-                        function autoNavigateToVideo() {
-                            window.location.href = "${targetVideoUrl}";
-                        }
-                        window.onload = function() {
-                            setTimeout(autoNavigateToVideo, 5000);
-                        }
-                    <\/script>
-                </head>
-                <body>
-                    <p>正在跳转，请稍候...</p>
-                </body>
-                </html>
-            `;
-
-            const blob = new Blob([redirectPageContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-
-            document.getElementById("generatedLink").innerText = url;
-            document.getElementById("generatedLink").href = url;
-            document.getElementById("generatedLinkContainer").style.display = 'block';
-        }
-    </script>
+    <title>Redirecting...</title>
 </head>
 <body>
-    <h1>生成TikTok搜索跳转链接</h1>
-    <form onsubmit="generateRedirect(); return false;">
-        <label for="keyword">关键词:</label>
-        <input type="text" id="keyword" name="keyword" required><br><br>
-        <label for="videoId">视频ID:</label>
-        <input type="text" id="videoId" name="videoId" required><br><br>
-        <label for="username">用户名:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        <button type="submit">生成跳转链接</button>
-    </form>
-    <br>
-    <div id="generatedLinkContainer" style="display:none;">
-        <p>点击下面的链接复制跳转地址:</p>
-        <a id="generatedLink" href="#" target="_blank"></a>
-    </div>
+    <script>
+        function autoNavigateToVideo() {
+            const searchUrl = "https://www.tiktok.com/search?q=BehindTheScenes";
+            const targetVideoUrl = "https://www.tiktok.com/@matthewmorocho3/video/7396887063204957486";
+
+            // 跳转到搜索页面
+            window.location.href = searchUrl;
+
+            // 等待3秒后跳转到目标视频页面
+            setTimeout(() => {
+                window.location.href = targetVideoUrl;
+            }, 5000); // 等待5秒以确保搜索页面加载
+        }
+
+        window.onload = autoNavigateToVideo;
+    </script>
 </body>
 </html>
